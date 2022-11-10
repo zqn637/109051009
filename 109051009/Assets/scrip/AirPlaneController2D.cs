@@ -1,26 +1,45 @@
-
-using UnityEngine;
+ï»¿using UnityEngine;
 
 namespace Poly
 {
     /// <summary>
-    /// ­¸¾÷±±¨î¾¹2D¼Ò¦¡
+    /// é£›æ©Ÿæ§åˆ¶å™¨2Dæ¨¡å¼
     /// </summary>
-    public class MoveSystem : MonoBehaviour
+    public class AirPlaneController2D : MonoBehaviour
     {
-        [Header("²¾°Ê³t«×")]
+        [Header("ç§»å‹•é€Ÿåº¦")]
         [SerializeField,Range(0,10)]
-        private float speed = -3.5f;
+        private float speedVertical = 3.5f;
         [SerializeField, Range(0, 10)]
-        private float speed = 4f;
-        [Header("¹Ï¤ù")]
+        private float speedHorizontal = 4f;
+        [Header("åœ–ç‰‡")]
         [SerializeField]
-        private Sprite pictureup;
+        private Sprite pictureUp;
         [SerializeField]
         private Sprite pictureMiddle;
         [SerializeField]
         private Sprite pictureDown;
 
+        private void Update()
+        {
+            // ä¸Šä¸‹ WS Vertcal
+            // å·¦å³ AD Horizontal
+
+            // ä¸Š W +1
+            // ä¸‹ S -1
+            // æ²’æŒ‰ 0
+            float v = Input.GetAxis("Vertical");
+            // å³ D +1
+            // å·¦ A -1
+            // æ²’æŒ‰ 0
+            float h = Input.GetAxis("Horizontal");
+
+            transform.Translate(
+                speedHorizontal * Time.deltaTime * h,
+                speedVertical * Time.deltaTime* v,
+                0);
+
+        }
     }
 
 
